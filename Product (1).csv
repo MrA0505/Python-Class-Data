@@ -1,0 +1,17 @@
+Order ID,Product,Category,Amount,Date,Country
+1001,Carrot,Vegetables,4000,10-Nov-19,USA
+1002,Broccoli,Vegetables,3000,12-Nov-19,UK
+1003,Banana,Fruits,5000,08-Aug-19,IND
+1004,Banana,Fruits,2000,07-Sep-19,GER
+1005,Beans,Vegetables,5000,13-Jul-19,USA
+1006,Orange,Fruits,1000,15-Aug-19,UK
+1007,Broccoli,Vegetables,2000,10-Aug-19,FRNC
+1008,Banana,Fruits,4000,15-Aug-19,IND
+1009,Apple,Fruits,5000,14-Aug-19,FRNC
+1010,Mango,Fruits,3000,01-Jul-19,USA
+1011,Carrot,Vegetables,1000,10-Jul-19,USA
+1012,Apple,Fruits,5000,08-Aug-19,FRNC
+1013,Banana,Fruits,3000,05-Aug-19,UK
+1014,Broccoli,Vegetables,2000,10-Nov-19,IND
+1015,Carrot,Vegetables,4000,12-Nov-19,FRNC
+1016,Mango,Fruits,5000,01-Sep-19,UK

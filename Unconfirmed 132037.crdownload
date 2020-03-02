@@ -1,0 +1,33 @@
+class BasicInfo:
+    def __init__(self): # constructor
+        self.Name=None
+        self.Address=None
+    def getValues(self):
+        self.Name=input('Enter the name')
+        self.Address=input('Enter the address')
+    def showValue(self):
+        print('Name={} \t Address={}'.format(self.Name,self.Address))
+
+class Course(BasicInfo):
+    def __int__(self):
+        BasicInfo.__init__(self)
+        self.Course=None
+        self.Durations=None
+        self.Fees=None
+    def getCourseDetails(self):
+        BasicInfo.getValues(self)
+        self.Course=input('Course Name')
+        self.Durations=int(input('Enter the Durations'))
+        self.Fees=float(input('Enter Fees of course'))
+    def showCourseDetails(self):
+        BasicInfo.showValue(self)
+        print('Course = {} \t Durations={} \t Fees={}'.format(self.Course,self.Durations,self.Fees))
+# object
+'''
+bi=BasicInfo()
+bi.getValues()
+bi.showValue()
+'''
+c=Course()
+c.getCourseDetails()
+c.showCourseDetails()

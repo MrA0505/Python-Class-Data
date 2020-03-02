@@ -1,0 +1,38 @@
+select * from tbl_mst_company;
+
+select  * from tbl_trans_comp_revnue;
+
+-- inner join
+select c1.compname,ct.revid,ct.total_revenue,ct.year,ct.total_revenue*0.05 expense,
+ct.total_revenue - (ct.total_revenue*0.05) profit
+from
+tbl_mst_company c1 inner join tbl_trans_comp_revnue ct on c1.id=ct.compid;
+  --
+
+select c1.compname,ct.revid,ct.total_revenue,ct.year,ct.total_revenue*0.05 expense,
+ct.total_revenue - (ct.total_revenue*0.05) profit
+from
+tbl_mst_company c1 right join tbl_trans_comp_revnue ct on c1.id=ct.compid;
+
+select c1.compname,ct.revid,ct.total_revenue,ct.year,ct.total_revenue*0.05 expense,
+ct.total_revenue - (ct.total_revenue*0.05) profit
+from
+tbl_mst_company c1 left join tbl_trans_comp_revnue ct on c1.id=ct.compid;
+
+
+select c1.compname,ct.revid,ct.total_revenue,ct.year,ct.total_revenue*0.05 expense,
+ct.total_revenue - (ct.total_revenue*0.05) profit
+from
+tbl_mst_company c1 full join tbl_trans_comp_revnue ct on c1.id=ct.compid;
+
+-- Query within query is called sub query
+select max(sal) from emp
+where sal<(select max(sal) from emp where sal<(select max(Sal) from emp));
+ -- Ordering
+select * from tbl_company
+order by compname asc;
+
+
+select * from tbl_company
+order by compname asc,revenue asc;
+

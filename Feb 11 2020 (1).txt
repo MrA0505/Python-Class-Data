@@ -1,0 +1,137 @@
+---- Data Definition (create,Alter,Drop,Truncate)
+--- Data Manipulation (Insert,Update,Delete)
+-- TCL - Transaction Control Language (commit,rollback,savepoint)
+--- DBA (Database Adminstrator)
+-- DCL - Data Control Language( Grant,Revoke)
+-- Universal command - (select)
+
+
+-- Reterival Process
+-- 1. All rows and all columns
+-- 2. All rows and selected columns
+-- 3. Selected rows and all columns
+-- 4. selected rows and selected columns
+
+----------------
+-- Example 01
+select * from emp;
+
+select * from dept;
+
+select * from fruits;
+
+select * from categories_01;
+
+-- Example02
+select empno from emp;
+select empno,ename from emp;
+select empno,ename,job from emp;
+select empno,ename,job,sal from emp;
+
+-- Example 03
+-- Operator 
+-- Boolean Operator
+-- >,<,>=,<=,=,!= (True/False) 
+-- >,<,>=,<=,=,!= (Date and Number)
+-- =,!= (string)
+-- Range Operator
+-- Between <min_val> and <max_val> (Number and Date)
+--
+-- List Operator
+-- String Operator
+-- Special Operator
+
+--  Display the employee details who are working in deptno=20
+
+select * from emp where deptno=20;
+
+-- show all analyst
+select * from emp where job='ANALYST';
+
+-- show all employee who are managed by 1100
+select * from emp where mgr=1100;
+
+-- 
+select * from emp where hiredate>'01-Jan-2017';
+select * from emp where hiredate<'01-Jan-2017';
+
+select hiredate from emp;
+
+-- Range Operator
+
+select * from emp where sal between 3000 and 6000;
+
+select * from emp where hiredate between '01-jan-1980' and '31-Dec-1982';
+
+select * from emp where job between 'CLERK' and 'ANALYST';
+select * from emp where job between 'CLERK' and 'MANAGER';
+
+-- List Operator
+-- in() - number,string,date
+-- 
+
+select * from emp where job in('DEVELOPER','ENGINEER','ANALYST');
+
+select * from emp where deptno in(10,20,30);
+
+select ename,deptno from emp where deptno in(10,20,30);
+
+select * from emp where hiredate in('01-jan-1987','31-dec-2000','01-mar-2019');
+
+select table_name from tabs;
+
+select * from TBL_MST_INVENTORY;
+
+select * from TBL_MST_INVENTORY where response_type in('F','N');
+-- 
+select * from tbl_mst_inventory where purchase_date in ('14-08-17','25-01-17');
+
+-- String Operation
+  -- Like 
+    -- %, _
+      -- % - variable length
+      -- _(under score) -  fixed length (each under score represents the each character of [A-Z,a-z,0-9]
+      
+
+
+select * from emp where ename like  'A%';
+
+
+select * from emp where ename like  'T%';
+
+select * from emp where ename like  'S%';
+
+
+select * from emp where ename like  '%T';
+
+select * from emp where ename like  '%H';
+
+select * from emp where ename like  '%L';
+
+select * from emp where ename like  '%n';
+
+
+select * from emp where ename like '%A%';
+
+select * from emp where ename like '% %';
+
+select length(ename),ename from emp where ename like '_____';
+
+select * from emp where ename like 'A____';
+
+select * from emp where ename like '____H';
+
+select * from emp where ename like '__A__';
+
+----
+-- Quiz 01
+select * from emp where ename like 'A%_';
+select * from emp where ename like 'A%';
+
+insert into emp (empno,ename) values(3301,'A');
+commit;
+
+select * from emp where ename like '%%_';
+
+-- Special operator Null Treatment
+

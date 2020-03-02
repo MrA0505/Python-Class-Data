@@ -1,0 +1,283 @@
+select * from tbl_mst_item;
+
+select * from tbl_mst_user;
+
+-- Sub query 
+-- Query within query
+-- How many item created by test
+select * from tbl_mst_item
+where createby=(select userid from tbl_mst_user where FIRSTNAME='Test');
+
+select * from emp;
+select * from dept;
+
+select * from emp
+where deptno=(select deptno from dept where loc='Goa');
+
+-- manager location
+select * from dept
+where deptno=(select deptno from emp where Job='MANAGER');  
+-- if you are using the comperisional operator for subquery, you must confirm that inner query is returning only one record.
+
+select * from dept
+where deptno in (select deptno from emp where Job='MANAGER');
+
+-- Set Operator
+-- union
+-- intersection
+-- minus
+-- union all
+
+-- Two rules
+-- Rule no -1 
+-- all the query must have the same no of column
+-- Rule no -2
+-- Corresponding column must be identical data type
+
+-- SET Operator 
+-- Union, Intersect, Minus, Union All
+
+select 'A','B','C' from dual
+union
+select 'A','B'from dual;
+
+-- equal no of column
+select 'A','B','C' from dual
+union
+select 'A','B', null from dual;
+
+select 1,'A','31-Dec-2019' from dual
+union
+select 2,'C','01-jan-2020' from dual;
+
+-- Rule 02
+
+select 'A',1,'31-Dec-2019' from dual
+union
+select 2,'C','01-jan-2020' from dual;
+
+-- operation perform on Table
+select * from SetA
+union
+select * from SETB;
+
+select * from SetA
+intersect
+select * from SETB;
+
+
+select  * from SetA
+minus
+select * from setB;
+
+select  * from SetB
+minus
+select * from setA;
+
+
+select * from SetA
+
+union all
+select * from setB
+Order by 1;
+
+
+select ename from emp
+union all
+select dname from dept
+order by ename;
+
+
+select 10+10 from dual;
+
+select 10+10 from emp;
+select * from emp;
+
+alter table emp add dob date;
+
+desc dual;
+
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual
+union all
+select 'A','B','C','D' from dual;
+
+select * from dual;
+
+-- DDL Command
+-- Alter command
+
+create table ddl_command
+(
+ID number(2)
+);
+
+desc ddl_command;
+
+-- add one column with the name pname varchar2(20)
+
+alter table ddl_command add pname varchar2(20);
+
+insert into ddl_command values(1,'happy new year 2020');
+
+select length(pname) from ddl_command;
+
+-- size of pname with 15
+
+alter table ddl_command modify pname varchar2(15);
+
+select max(length(ename)) from emp;
+desc emp;
+-- increasing the size of pname (50)
+alter table ddl_command modify pname varchar2(50);
+
+-- ID 
+insert into ddl_command values(1,'Bye Bye year 2019');
+commit;
+
+select * from ddl_command;
+-- add constraints 
+alter table ddl_command add constraints pk_id_ddl_commad primary key(ID);
+
+
+update ddl_command
+set id=2 where pname like 'B%';
+commit;
+alter table ddl_command add constraints pk_id_ddl_commad primary key(ID);
+
+-- constraint dropped
+alter table ddl_command drop constraints pk_id_ddl_commad;
+-- constraint disable
+alter table ddl_command  disable primary key ;
+-- constraint enable
+alter table ddl_command  enable primary key ;
+
+select * from all_constraints where constraint_name like upper('pk_id_ddl_commad');
+
+alter table ddl_command add pdate date;
+
+desc ddl_command;
+
+alter table ddl_command drop column pdate;
+
+
+-- drop and truncate
+select * from ddl_command;
+
+delete from ddl_command;
+select * from ddl_command;
+rollback;
+
+Truncate table ddl_command;
+
+drop table ddl_command;
+
+desc ddl_command;
+--
+create table emp1
+as
+select * from emp;
+
+
+-- View 
+
+select * from emp1;
+
+create view view1
+as
+select * from emp1;
+
+select * from view1;
+select * from view1 where deptno=20;
+desc view1;
+
+insert into view1(empno,ename) values(2020,'New year');
+
+select * from emp1 where empno=2020;
+
+drop view view10;
+create view view10
+as
+select empno,ename,hiredate,comm,deptno,job from emp1 where deptno=10;
+
+create view view20
+as
+select empno,ename,hiredate,comm,deptno,job from emp1 where deptno=20;
+
+select * from view10;
+--===
+select empno,ename,sal from view10;
+select * from view10 where deptno=20;
+
+create view view_read_only
+as
+select empno,ename,sal from emp1 with read only;
+select * from view_read_only;
+
+insert into view_read_only values(2019,'Bye Bye',9000);
+
+--====
+-- Duplicate
+create table dup1_emp
+as
+select * from emp;
+
+select * from dup1_emp;
+
+create table dup2_emp
+as
+select * from emp where 1<>1;
+select * from dup2_emp;
+
+-- Mass insertion
+create table pl_name
+(
+player varchar2(100));
+
+insert into pl_name
+select 'Sachin Tendulkar' from dual
+union
+select 'Prabhakar' from dual
+union
+select 'Kohli' from dual;
+
+commit;
+
+select * from pl_name;
+
+delete from pl_name where player='Kohli';
+
+commit;
+
+rollback;
+
+

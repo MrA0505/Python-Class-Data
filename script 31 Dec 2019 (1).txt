@@ -1,0 +1,134 @@
+SQL> create table TBL_MST_Company
+  2  (
+  3  ID Number(2),
+  4  CompName varchar2(100));
+
+Table created.
+
+
+
+SQL> alter table TBL_MST_Company add constraints pk_id_company primary key (ID);
+
+Table altered.
+
+SQL> create table TBL_TRANS_COMP_REVNUE
+  2  (
+  3  RevID number(4) primary key,
+  4  compid number(4) references TBL_MST_Company(ID),
+  5  Total_Revenue number(18,3),
+  6  Year varchar(4));
+
+Table created.
+--
+Row insert
+insert into TBL_MST_Company
+select 1,'Google' from dual
+union
+select 2,'IBM' from dual
+union
+select 3, 'Microsoft' from dual
+union
+select 4, 'Facebook' from dual
+union
+select 5,'Yahoo' from dual
+union
+select 6,'Gmail' from dual
+union
+select 7,'Oracle corp' from dual
+union
+Select 8,'CSC' from dual
+union
+Select 9,'SAP LAB' from dual
+/
+
+
+
+insert into TBL_TRANS_COMP_REVNUE
+select 4,3,5000,2018 from dual
+union
+select 5,1,4000,2019 from dual
+union
+select 6,4,5500,2018 from dual
+union
+select 7,2,5010,2019 from dual
+union
+select 8,1,4000,2017 from dual
+union
+select 9,null,5500,2019 from dual
+
+
+ create table TBL_Company
+  2  (
+  3  ID Number(4) Primary key,
+  4  CompName Varchar2(100),
+  5  Revenue Number(10,2));
+
+
+
+insert into  TBL_Company
+select 1, 'Google',5000 from dual
+union
+select 2,'Youtube',5500 from dual
+union
+select 3,'Facebook',5800 from dual
+union
+select 4,'Yahoo',5000 from dual
+union
+select 5,'Google',6000 from dual
+union
+select 6,'Youtube',5000 from dual
+union
+select 7,'Gmail',4000 from dual
+union
+select 8,'Twitter',3000 from dual
+union
+select 9,'Youtube',6500 from dual
+union
+select 10,'Facebook',7500 from dual
+union
+select 11,'Google',6800 from dual;
+
+-------------------
+select max(revenue),min(revenue),count(revenue),avg(revenue),sum(revenue) from tbl_company
+
+
+
+group by
+------------
+select compname,max(revenue) from tbl_company
+group by compname;
+
+
+
+select compname,max(revenue),min(revenue),count(revenue),sum(revenue),avg(revenue) from tbl_company
+group by compname
+
+select count(Compid),count(*) from TBL_TRANS_COMP_REVNUE
+
+
+select count(nvl(compid,0)) from tbl_trans_comp_revnue;
+
+select count(Compid) from TBL_TRANS_COMP_REVNUE
+
+select compname,count(revenue) from tbl_company
+group by compname
+having count(revenue)>2
+
+select compname,sum(revenue) from tbl_company
+group by compname
+having sum(revenue)>10000
+
+
+
+select max(sal) from emp
+
+select * from emp
+where sal >(select avg(Sal) from emp)
+
+
+select max(sal) from emp
+where sal<(select max(sal) from emp where sal<(select max(Sal) from emp))
+
+
+
+

@@ -1,0 +1,71 @@
+-- String Operator
+-- Like 
+-- % (percentage) - represents variable length
+-- _(underscore) - each underscore represents the [A-Z,a-z,0-9]
+
+select ename from emp;
+-- show the employee details whose name start with s 
+select ename from emp where ename like 'S%';
+-- show the employee details whose name start with T
+select ename from emp where ename like 'T%';
+select ename from emp where ename like 'T%' or ename like 't%';
+-- show the employee details whose name ends with i.
+select * from emp where ename like '%i';
+-- show the employee details whose name ends with h.
+select * from emp where ename like '%H';
+-- show the employee details whose name contains 'A'
+select * from emp where ename like '%A%';
+
+-- show the employee details whose name contains 'M'
+select * from emp where ename like '%M%';
+
+-- show the employee details who name length is 5 character
+select * from emp where ename like '_____';
+-- show the employee details who name length is 5 character but start with 'S'
+select * from emp where ename like 'S____';
+-- show the employee details who name length is 7 character but start with 'S'
+select * from emp where ename like 'S______';
+
+-- show the employee details who name length is 5 character but ends with 'H'
+select * from emp where ename like '____H';
+
+select distinct job from emp;
+
+select * from emp where ename like '__A__';
+
+select * from emp where ename like '__A%';
+select * from emp where ename like '%T_';
+-- Query 01
+select * from emp where ename='A%';
+select * from emp where ename like 'A%';
+
+-- Query 02
+
+select ename from emp where ename like '%'; -- no conditions
+select ename from emp where ename like '_%'; -- at least 
+
+insert into emp (empno,ename) values(1209,'Mohit Ku');
+commit;
+select * from emp where ename like '% %';
+
+
+
+select table_name from tabs;
+create table demo_testing
+(
+id number(2) primary key,
+unq_id number(2) unique,
+name varchar(50));
+
+desc demo_testing;
+
+select * from all_constraints where lower(table_name) like 'demo_testing';
+
+insert into demo_testing values(1,1,'test');
+insert into demo_testing values(2,null,'test');
+select * from demo_testing;
+insert into demo_testing values(3,null,'test1');
+insert into demo_testing values(4,null,'test3');
+insert into demo_testing values(5,null,'test4');
+
+-- 

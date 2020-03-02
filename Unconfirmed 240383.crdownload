@@ -1,0 +1,25 @@
+class Pets:
+    def __init__(self):
+        self.PetName = None
+        self.PetColor = None
+    # Annotations
+    @property
+    def Name(self):
+        return self.PetName
+    @Name.setter
+    def Name(self,nm):
+        self.PetName=nm
+    @property
+    def Color(self):
+        return self.PetColor
+    @Color.setter
+    def Color(self,cl):
+        self.PetColor=cl
+    def display(self):
+        print('Pet Name={}\t Pet Color={}'.format(self.PetName,self.PetColor))
+
+p=Pets()
+p.display()
+p.PetName='Cat'
+p.PetColor='Black'
+p.display()

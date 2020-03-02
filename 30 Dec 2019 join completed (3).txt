@@ -1,0 +1,206 @@
+create table tbl_mst_Order
+(
+order_ID number(4) primary key,
+curst_id number(4),
+Orderdate date default sysdate
+);
+
+create table Tbl_Trans_Order
+(
+Order_ID Number(4) references tbl_mst_Order(order_ID),
+itemID number(4) references tbl_mst_item(ITEMID),
+qty number(2))
+;
+
+create table tbl_mst_customer
+(
+cust_id number(4) primary key,
+cust_name varchar2(100),
+cust_add varchar2(500));
+
+-- foreign key
+alter table tbl_mst_Order add constraints fk_order_cust
+foreign key (curst_id)
+references tbl_mst_customer (cust_id);
+
+desc tbl_mst_item;
+
+insert into tbl_mst_customer values(1,'Sachin Tendulkar','Mumbai');
+insert into tbl_mst_customer values(2,'Saurabh Gangooly','Kolkatta');
+insert into tbl_mst_customer values(3,'Rahul Dravid','Bengaluru');
+insert into tbl_mst_customer values(4,'MS Dhoni','Ranchi');
+insert into tbl_mst_customer values(5,'Virat Kohli','Delhi');
+commit;
+
+select * from tbl_mst_customer;
+
+insert into tbl_mst_Order(order_id,curst_id) 
+select 4,null from dual
+union 
+select 5,4 from dual
+union
+select 6,3 from dual
+union
+select 7,null from dual;
+
+commit;
+
+select * from tbl_mst_Order;
+
+insert into Tbl_Trans_Order values(1,1005,1);
+insert into Tbl_Trans_Order values(1,1006,2);
+insert into Tbl_Trans_Order values(1,1005,1);
+insert into Tbl_Trans_Order values(1,1002,5);
+
+select * from tbl_mst_item;
+
+commit;
+
+-- same colum can't have in a table
+create table same_column
+(
+col1 number(2),
+col1 number(2));
+
+
+select * from tbl_mst_customer;
+select * from tbl_mst_item;
+select * from tbl_Trans_Order;
+
+select O.order_ID,C1.cust_Name,I.ITEMNAME,T.QTY,i.itemprice
+from tbl_mst_Order O
+inner join tbl_trans_order T on O.order_ID=T.Order_ID
+inner join tbl_mst_customer C1 on O.curst_ID=c1.cust_ID
+inner join tbl_mst_item I on T.itemID=I.itemid;
+
+
+-- EMP and DEPT
+select * from emp; 
+
+select * from dept;
+
+select e.empno,e.ename,d.dname,d.loc
+from emp e inner join dept d on e.deptno=d.deptno;
+
+-- outer join
+-- show the employee who are working in certain department and who are on the bench
+select e.empno,e.ename,d.dname,d.loc
+from emp e left outer join dept d on e.deptno=d.deptno;
+
+select 
+e.empno,e.ename,d.dname,d.loc
+from dept d  right outer join     emp e on e.deptno=d.deptno;
+
+-- show the dept where employee is working as well as non employee department
+
+select 
+e.empno,e.ename,d.dname,d.loc
+from dept d  left outer join     emp e on e.deptno=d.deptno;
+-- show the employee who are working in particular dept and show the bencher and show the dept where non is working
+select 
+e.empno,e.ename,d.dname,d.loc
+from dept d  full outer join  emp e on e.deptno=d.deptno
+order by e.empno;
+
+select 
+e.empno,e.ename,d.dname,d.loc
+from emp e  full outer join dept d on e.deptno=d.deptno
+order by e.empno;
+
+
+-- Self join
+create table item_category
+(
+ITEMID number(2) Primary key,
+Item_name varchar2(100) not null,
+ITEMCATID number(2) references item_category(itemid)
+);
+
+
+
+insert into item_category
+values (1,'Electronics',null);
+
+
+insert into item_category
+values (2,'TV',null);
+
+insert into item_category
+values (3,'Men',null);
+
+commit;
+
+insert into item_category
+select 4,'Mobile',1 from dual
+union
+select 5,'Mobile Accessories',1 from dual
+union
+select 6, 'Printer',1 from dual
+union
+select 7,'Cateridge',1 from dual;
+
+insert into item_category
+select 8,'Samsung',2 from dual
+union
+select 9,'LG',2 from dual
+union
+select 10, 'Onida',2 from dual
+union
+select 11,'VIO',2 from dual;
+
+
+insert into item_category
+select 12,'Blue Denim',3 from dual
+union
+select 13,'Trouser',3 from dual
+union
+select 14, 'Shoes',3 from dual;
+
+insert into item_category
+select 15,'Iphone',4 from dual
+union
+select 16,'Samsung',4 from dual
+union
+select 17, 'HTC',4 from dual;
+
+commit;
+
+commit;
+
+
+select * from item_category;
+
+desc item_category;
+
+
+
+select i.ITEM_NAME,i1.ITEM_NAME
+from item_category I join item_category i1 on i1.ITEMID=i.ITEMCATID;
+
+
+-- Group 
+
+
+select 
+emp.empno,emp.ename,dept.dname,dept.loc
+from emp,dept 
+where emp.deptno=dept.deptno;
+
+
+
+
+
+select 
+emp.empno,emp.ename,dept.dname,dept.loc
+from emp,dept 
+where emp.deptno(+)=dept.deptno;
+
+
+
+select 
+emp.empno,emp.ename,dept.dname,dept.loc
+from emp,dept 
+where emp.deptno=dept.deptno(+);
+
+
+

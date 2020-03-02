@@ -1,0 +1,12 @@
+Menu 
+----------------
+1. Compose Mail
+2. Edit mail
+3. Delete mail
+4. Mark Spam
+5. Inbox
+6. Thrash Mail
+7. Spam
+8. Mark Thrash to Inbox
+9. Option not valid
+

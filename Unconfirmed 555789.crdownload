@@ -1,0 +1,17 @@
+# Getter and Setter method
+class Pets:
+    def __init__(self):
+        self.PetName=None
+        self.Color=None
+    def get_Value(self):
+        return self.PetName,self.Color
+    def set_value(self,nm,col):
+        self.PetName=nm
+        self.Color=col
+
+p=Pets()
+print(p.get_Value())
+p.set_value('Dog','Brown')
+print(p.get_Value())
+
+

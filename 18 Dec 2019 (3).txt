@@ -1,0 +1,76 @@
+-- 1.All rows and all columns
+-- select * from <table_name>
+select * from emp;
+select * from dept;
+
+-- 2. All rows and selected column
+select empno,ename,sal from emp;
+-- fetch all employee comm and deptno
+select comm,deptno from emp;
+
+-- show all employee job and salary along with deptno
+select job,sal,deptno from emp;
+-- show all employee name and their designation
+select ename,job from emp;
+
+-- All columns and selected rows
+select * from emp
+where sal >2000;
+
+-- Show all managers
+select * from emp where upper(job)=upper('MANAGER');
+--upper()
+-- lower()
+
+-- SHOW employee of dept 20 
+select * from emp
+where deptno=20;
+
+-- show all employee who join before 1- jan - 1990
+
+select * from emp
+where hiredate < '1-jan-1990';
+
+-- show all employee who join after 1- jan - 1990
+
+select * from emp
+where hiredate > '1-jan-1990';
+-- show the details of Smith
+select * from emp
+where ename='SMITH';
+
+select * from emp where ename >'SMITH';
+
+-- Range Operator (Between <min_val> And <max_val>)
+-- show the details of employee whose salary is start from 800 to 2000
+select * from emp where sal between 800 and 2000;
+
+-- show the details of employee whose salary is start from 800 to 3000
+select * from emp where sal between 800 and 3000;
+
+-- Alternate 
+select * from emp where sal>=800 and sal<=3000;
+
+-- hiredate between 01-dec-1980 and 31-dec-1990
+select * from emp where hiredate between '01-Dec-1980' and '31-Dec-1990';
+
+-- List Operator (In() Operator)
+-- show the details of 'Salesman','Analyst','Manager'
+select * from emp where job in ('SALESMAN','ANALYST','MANAGER');
+
+-- show the details of employee whose employee number is as following
+--7499,7566,7788
+select * from emp where empno in (7499,7566,7788);
+
+-- show the detials of employee who is getting 800,3000 and 5000
+select * from emp where sal in (800,3000,5000);
+select * from emp where sal in (3000,800,5000);
+
+-- Special operator (IS and IS Not) for null treatment
+select ename,comm from emp where comm=null;
+
+select * from emp where comm=null;
+
+select * from emp where comm is null;
+
+select * from emp where comm is not null;

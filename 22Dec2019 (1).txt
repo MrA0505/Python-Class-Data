@@ -1,0 +1,39 @@
+select * from employee_testing;
+
+ Insert into employee_testing values(2,'Virat','Kohli','M','01-jan-1986','12-jan-1990','N',5000.999);
+ 
+ Insert into employee_testing values(2,null,'Virat',null,'Kohli','M','01-jan-1986','12-jan-1990','N',5000.999);
+ 
+ desc employee_testing;
+ 
+ insert into employee_testing(EMPLOYEENO,FIRSTNAME,LASTNAME)
+ values(3,'Sachin','Tendulkar');
+ commit;
+ 
+ select * from employee_testing;
+ 
+ -- Testing 
+Insert into employee_testing values(4,1004,'Jhulan',null,'Goswamii','F','01-jan-1986','12-jan-1990','N',5000.999);
+commit;
+-- Check constraint for Gender
+Insert into employee_testing values(5,1005,'Rahul',null,'Dravid','O','01-jan-1986','12-jan-1990','N',5000.999);
+-- Not null for Last Name
+Insert into employee_testing values(5,1005,'Rahul',null,null,'M','01-jan-1986','12-jan-1990','N',5000.999);
+ -- Not null for First Name
+Insert into employee_testing values(5,1005,null,null,'Dravid','M','01-jan-1986','12-jan-1990','N',5000.999);
+-- EmployeeIdentity - Unique 
+Insert into employee_testing values(5,1004,'Rahul',null,'Dravid','M','01-jan-1986','12-jan-1990','N',5000.999);
+-- EmployeeIdentity - Null accepted or not 
+Insert into employee_testing values(5,null,'Rahul',null,'Dravid','M','01-jan-1986','12-jan-1990','N',5000.999);
+
+-- EmployeeNo - Primary key - Value Repeat
+Insert into employee_testing values(5,1005,'Mahendra','Singh','Dhoni','M','01-jan-1986','12-jan-1990','N',5000.999);
+-- EmployeeNo - Primary key - Null Value
+Insert into employee_testing values(Null,1005,'Mahendra','Singh','Dhoni','M','01-jan-1986','12-jan-1990','N',5000.999);
+
+
+-- EmployeeNo - Primary key - Null Value
+Insert into employee_testing values(6,1006,'Mahendra','Singh','Dhoni','M','01-jan-1986','12-jan-1990','N',5000.999);
+commit;
+
+select * from all_constraints where lower(table_name)='employee_testing';

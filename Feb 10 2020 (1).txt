@@ -1,0 +1,64 @@
+-- emp
+-- dept
+
+-- Data Reterieval (select)
+select * from emp;
+
+select * from dept;
+
+select * from students;
+
+select * from invoice;
+
+select * from demo3;
+
+select * from setA;
+ -- 
+ 
+ select empno,ename from emp;
+ 
+ select empno,sal from emp;
+ 
+ select empno,ename,sal from emp;
+ 
+ desc emp;
+
+select deptno,dname from dept;
+
+select deptno,loc from dept;
+
+
+-- Display the employee details whose salary is 5000.
+
+select * from emp where sal=5000;
+
+
+
+select sal from emp;
+
+
+select * from emp where 1=1;
+
+
+select * from emp where sal>5000;
+
+
+select * from emp where sal>=5000; -- sal==5000 or sal>5000
+
+
+select * from emp where ename='NEIL';
+select * from emp where ename!='NEIL';
+
+select * from emp where ename >'NEIL';
+
+-- Range Operator (Between <min_value> AND <max_value> (Number and Date only)
+
+-- 
+
+select * from emp where sal between 3000 and 5000;
+
+
+
+
+
+

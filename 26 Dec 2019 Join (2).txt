@@ -1,0 +1,33 @@
+-- Join
+select * from tbl_mst_item;
+-- Join 
+ -- Simple Join  / Inner join
+  -- Outer
+   -- right outer join / right join
+   -- left outer join / left join
+   --  full outer join / full join
+ -- cross join /certisian product
+ -- self join
+  -- Cross join (MxN)
+  
+  select * from students;
+  select * from course;
+  
+  select * from students,course;
+  
+  select * from students cross join course;
+  select * from course cross join students;
+  
+  -- inner join
+  
+  
+  
+  select 
+  *
+  from students s inner join course c on s.SName=c.coursename;
+  select *  from students s inner join course c on s.courseid=c.courseid;
+  select *  from course c inner join students s on s.courseid=c.courseid;
+  
+  
+  
+  
