@@ -1,0 +1,84 @@
+-- To Define the Data Structure , we use the DDL command (create)
+create table TBL_Item
+(
+Accounts Number(6),
+Names varchar2(50),
+Rep varchar2(50),
+Manager varchar2(50),
+Product varchar2(100),
+Quantity Number(3),
+Price Number(10),
+Status varchar2(20),
+Purch_Date date,
+Sell_price Number(13,3)
+);
+
+desc TBL_Item
+select * from TBL_ITEM;
+
+-- Add new record to the table (insert)
+insert into tbl_item values(714466	,'Trantow-Barrows','	Craig Booker',	'Debra Henley',	'CPU',	1,	30000,'presented','12-02-1990',330000.000);
+commit;
+
+select * from tbl_item;
+
+
+--insert into tbl_item values ('Trantow-Barrows',714466,'Craig Booker	','Debra Henley',	'Software',	1,	'Mar 13 1991', 10000,'presented',	110000.999)
+insert into tbl_item 
+(Names,accounts,manager,rep,product,quantity,purch_date,price,status,sell_price)
+values
+('Trantow-Barrows',714466,'Craig Booker	','Debra Henley',	'Software',	1,	'13-03-1991', 10000,'presented',	110000.999);
+commit;
+select * from tbl_item;
+
+insert into tbl_item 
+(accounts,product,purch_date,sell_price,price)
+values(714466,'Memory','01-01-2020',12000.67,10000);
+commit;
+select * from tbl_item;
+
+
+-- if you want to change the data of existing record, use DML command (update)
+update tbl_item
+set Names='Graig';
+
+select * from tbl_item;
+rollback;
+
+update tbl_item
+set Names='Graig'
+where Product='Memory';
+
+select * from tbl_item;
+commit;
+
+insert into tbl_item (accounts) values(1100);
+commit;
+select * from tbl_item;
+
+-- to delete record from the table use DML commad (delete)
+delete from tbl_item;
+select * from tbl_item;
+rollback;
+
+delete from tbl_item where accounts=1100;
+
+commit;
+select * from tbl_item;
+
+
+
+CREATE TABLE TBL_EMP
+(
+EMPNO NUMBER(6) CONSTRAINTS PK_EMPNO PRIMARY KEY,
+IDENTITYNO NUMBER(8) CONSTRAINTS UNQ_IDENTITY UNIQUE,
+ENAME VARCHAR2(50) NOT NULL,
+DESIGNATION VARCHAR2(50) CONSTRAINTS CHK_DESIGNATION CHECK (DESIGNATION IN('Manager','Clerk','Analyst')),
+Experience number(2) constraints chk_experience check (Experience >=0),
+Salary number(10,3) constraints chk_salary check ( Salary between 5000 and 50000)
+);
+
+desc TBL_EMP;
+
+
+

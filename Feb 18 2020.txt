@@ -1,0 +1,183 @@
+select * from tbl_emp;
+
+-- Testing 
+desc tbl_emp;
+
+insert into tbl_emp values(1001,123456,'Robert','Analyst',5,25000);
+commit;
+select * from tbl_emp;
+
+-- salary less 5000 
+insert into tbl_emp values(1002,123457,'Frank','Clerk',3,4900);
+
+-- salary more than 50000
+insert into tbl_emp values(1002,123457,'Frank','Clerk',3,37000);
+commit;
+
+-- experience -1 not accepted
+insert into tbl_emp values(1003,123458,'Dsouja','Analyst',-1,37000);
+-- experience 0 accepted
+insert into tbl_emp values(1003,123458,'Dsouja','Analyst',0,37000);
+commit;
+-- experience 5 accepted
+insert into tbl_emp values(1004,123459,'Lara','Manager',5,37000);
+commit;
+-- Designation (Tester) - not accepted
+insert into tbl_emp values(1005,123440,'Brayan','Tester',5,37000);
+
+-- Designation
+insert into tbl_emp values(1005,123440,'Brayan','Clerk',5,37000);
+commit;
+
+
+-- Name null not accepted
+insert into tbl_emp values(1006,123876,null,'Clerk',5,37000);
+
+insert into tbl_emp values(1006,123876,'Roots','Clerk',5,37000);
+commit;
+
+select * from tbl_emp;
+
+-- identityno - uniqueness
+insert into tbl_emp values(1007,123876,'Roots','Clerk',5,37000);
+
+insert into tbl_emp values(1007,null,'Smith','Manager',6,38000);
+commit;
+
+insert into tbl_emp values(1008,null,'Ronalds','Analyst',7,40000);
+commit;
+
+insert into tbl_emp values(1009,null,'Donalad','Manager',10,45000);
+commit;
+
+select * from tbl_emp;
+
+select 10+null from dual;
+
+select * from tbl_emp where identityno=null;
+
+-- Primary key
+insert into tbl_emp values(1010,null,'Trump','Manager',10,45000);
+commit;
+
+select * from tbl_emp;
+insert into tbl_emp values(1010,null,'Trump','Manager',10,45000);
+insert into tbl_emp values(null,null,'Trump','Manager',10,45000);
+
+create table tbl_emp_demo
+(
+IDs number(4) primary key,
+names varchar(10) not null,
+dob date);
+
+insert into tbl_emp_demo values('1001','Shaik','01-12-1980');
+select * from tbl_emp_demo;
+commit;
+insert into tbl_emp_demo values('ones','Shaik','01-12-1980');
+
+insert into tbl_emp_demo values(1002,'Shaik kumars','01-12-1980');
+
+insert into tbl_emp_demo values(1002,1234,'01-12-1980');
+commit;
+insert into tbl_emp_demo values(1003,1234,123456);
+
+
+insert into tbl_emp_demo values(1002,1234,'01-12-1980');
+
+
+
+
+create table demos
+(
+ids number(2) primary key
+);
+
+create table demos1
+(
+ids number(2) constraints pk_ids_demo1 primary key
+);
+
+insert into demos values(1);
+
+select * from demos1;
+
+select * from all_Constraints where constraint_name='SYS_C0014763';
+
+select * from all_Constraints where constraint_name='PK_IDS_DEMO1';
+
+
+select * from all_constraints where table_name=upper('tbl_emp');
+
+-- 
+create table vendor
+(
+vendorid number(4),
+vendorname varchar(100),
+address varchar(500)
+);
+
+select * from all_constraints where table_name=upper('vendor');
+
+insert into vendor 
+select 1001,'Reliance','New Delhi' from dual
+union all
+select 1002,'Airtel','Chennai' from dual
+union all
+select 1001,'Ari voice','Lucknow' from dual;
+
+commit;
+select * from vendor;
+
+--modify the data defintion - alter
+alter table vendor add constraint vendor_id primary key(vendorid);
+
+create table vendor_dup
+as
+select * from vendor;
+
+select * from vendor_dup;
+
+delete from vendor where vendorid=1001 and vendorname='Ari voice';
+commit;
+
+insert into vendor
+select 1003, vendorname,address from vendor_dup
+where vendorid=1001 and vendorname='Ari voice';
+
+commit;
+select * from vendor;
+
+alter table vendor add constraints chck_vendor_name check (vendorname in ('Reliance','Airtel','Ari voice'));
+
+
+insert into vendor values(1004,'Vodaphone','New Delhi');
+
+alter table vendor modify constraints chck_vendor_name disable;
+
+alter table vendor modify constraints chck_vendor_name enable;
+
+select * from vendor;
+
+alter table vendor drop constraints chck_vendor_name;
+
+-- Data type change 
+select * from vendor_dup;
+
+truncate table vendor_dup;
+
+rollback;
+
+
+alter table vendor_dup modify  vendorid varchar(5);
+
+desc vendor_dup;
+
+alter table vendor_dup modify  vendorid varchar(1);
+
+alter table vendor_dup modify  vendorid varchar(100);
+
+drop table vendor_dup;
+
+desc vendor_dup
+
+

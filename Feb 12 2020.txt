@@ -1,0 +1,84 @@
+select * from emp;
+-- null treatment
+-- with null, we can't perform any type task (arithmetic ,boolean)
+
+select 10+10 from dual;
+select 10-10 from dual;
+select 10+null from dual;
+
+select 'jitendra' from dual;
+
+select 'oracle';
+
+select 'oracle' from ;
+
+select 'oracle',10+2 from emp;
+
+select oracles from emp;
+
+select * from naveen;
+
+select naveen from emp;
+select * from dual;
+
+select 'X','Y','Z' from dual
+union all
+select 'X','Y','Z' from dual
+union all
+select 'X','Y','Z' from dual
+union all
+select 'X','Y','Z' from dual;
+
+-- null value 
+select null + 10 from dual;
+select 10/0 from dual;
+select null/0 from dual;
+
+-- beelean operator
+
+select * from emp where deptno=null;
+
+select * from emp where deptno>null;
+
+select * from emp where 1=1;
+
+select * from emp where null=null;
+
+select * from emp;
+
+select deptno from emp;
+
+select * from emp where comm=0;
+
+select * from emp where comm>0;
+
+select * from emp where comm=null; -- is (special operator)
+
+select * from emp where comm is null;
+
+select * from emp where comm is not null;
+
+select * from emp where ename is null;
+
+select * from emp where ename not like 'A%';
+
+select * from emp where job='ANALYST' and sal=3000;
+
+select * from emp where job='ANALYST' or sal=3000;
+
+select ename,sal from emp where job='ANALYST' or sal=3000;
+
+
+-- Testing
+-- 
+
+create table demo_char_varchar_01
+(
+name1 char(10),
+name2 varchar(10));
+
+insert into demo_char_varchar_01 values('Oracle','Oracle');
+
+select length(name1),name1,length(name2),name2 from demo_char_varchar_01;
+
+insert into demo_char_varchar_01 values('O','O');
